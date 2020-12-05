@@ -6,7 +6,11 @@ namespace NasaProject
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            FileReader nasaInfo = new FileReader();
+
+            nasaInfo.ReadFile();
+
+            nasaInfo.PrintPlanets();
         }
     }
 }
