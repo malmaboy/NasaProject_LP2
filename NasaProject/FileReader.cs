@@ -1,6 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace NasaProject
@@ -26,7 +26,7 @@ namespace NasaProject
         }
 
         /// <summary>
-        /// 
+        /// Read The File 
         /// </summary>
         public void ReadFile()
         {
@@ -41,7 +41,7 @@ namespace NasaProject
                 {
                     while ((line = streamReader.ReadLine()) != null)
                     {
-                        if (line.StartsWith("#"))
+                        if (line.StartsWith("#") || line.StartsWith("pl_name"))
                         {
                             continue;
                         }
@@ -49,10 +49,15 @@ namespace NasaProject
                         {
                             lineValues = line.Split(",");
 
-                            planets.Add(new Planet(lineValues[0],
-                                lineValues[1], lineValues[5], lineValues[6],
-                                lineValues[11], lineValues[13],
-                                lineValues[15], lineValues[20]));
+                            planets.Add(new Planet(
+                                lineValues[0],
+                                lineValues[1],
+                                lineValues[5],
+                                lineValues[6],
+                                lineValues[11],
+                                lineValues[13],
+                                lineValues[15],
+                                lineValues[20]));
                         }
                     }
                 }
@@ -61,11 +66,12 @@ namespace NasaProject
 
         public void PrintPlanets()
         {
-            IEnumerable<Planet> filteredPlanets = planets.Where(planet => planet.name.Length > 5);
+            IEnumerable<Planet> filteredPlanets =
+            planets.Where(planet => planet.DiscYear < 2012);
 
             foreach (Planet i in filteredPlanets)
             {
-                Console.WriteLine(i.name);
+                Console.WriteLine($"{i.Name} | {i.DiscMethod} | {i.DiscYear}");
             }
         }
     }
