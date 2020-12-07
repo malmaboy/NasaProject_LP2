@@ -13,7 +13,7 @@ namespace NasaProject
     {
         private string filePath;
         List<Planet> planets = new List<Planet>();
-        List<string> stars = new List<string>();
+        List<Star> stars = new List<Star>();
 
         /// <summary>
         /// Constructor
@@ -32,6 +32,7 @@ namespace NasaProject
         {
             string line;
             string[] lineValues;
+            bool newStar;
 
             using (FileStream fileStream = new FileStream(filePath,
                 FileMode.Open, FileAccess.Read))
@@ -58,20 +59,33 @@ namespace NasaProject
                                 lineValues[13],
                                 lineValues[15],
                                 lineValues[20]));
+
+                            newStar = true;
+
+                            for (int i = 0; i < stars.Count; i++)
+                            {
+                                if (stars[i].Name == lineValues[1])
+                                {
+                                    newStar = false;
+                                    break;
+                                }
+                            }
+
+                            if (newStar)
+                            {
+                                stars.Add(new Star(
+                                    lineValues[1],
+                                    lineValues[23],
+                                    lineValues[24],
+                                    lineValues[25],
+                                    "0",
+                                    "0",
+                                    "0",
+                                    lineValues[34]));
+                            }
                         }
                     }
                 }
-            }
-        }
-
-        public void PrintPlanets()
-        {
-            IEnumerable<Planet> filteredPlanets =
-            planets.Where(planet => planet.DiscYear < 2012);
-
-            foreach (Planet i in filteredPlanets)
-            {
-                Console.WriteLine($"{i.Name} | {i.DiscMethod} | {i.DiscYear}");
             }
         }
     }

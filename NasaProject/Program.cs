@@ -9,8 +9,6 @@ namespace NasaProject
             FileReader nasaInfo = new FileReader();
 
             nasaInfo.ReadFile();
-
-            nasaInfo.PrintPlanets();
         }
     }
 }
