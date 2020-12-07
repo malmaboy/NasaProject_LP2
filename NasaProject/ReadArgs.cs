@@ -42,7 +42,6 @@ namespace NasaProject
                     if (args[i] == "search-planets")
                     {
                         SearchPlanets(args);
-                        System.Console.WriteLine("check");
                         break;
                     }
 
@@ -109,8 +108,22 @@ namespace NasaProject
         {
             for (int i = 0; i < args.Length; i++)
             {
+                if (args[i] == "--dist-max")
+                {
+                    filteredSearch.FilterMaxStarDistance(Single.Parse(args[i+1], 
+                        NumberStyles.Any,
+                        CultureInfo.InvariantCulture));
+                }
 
+                if (args[i] == "--dist-min")
+                {
+                    filteredSearch.FilterMinStarDistance(Single.Parse(args[i+1],
+                        NumberStyles.Any,CultureInfo.InvariantCulture));
+                }
+                
             }
+
+            filteredSearch.PrintStars();
         }
 
         private void PlanetInfo(string[] args)

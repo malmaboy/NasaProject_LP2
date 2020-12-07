@@ -19,7 +19,7 @@ namespace NasaProject
         public float Rad { get; private set; }
 
         ///  Star Mass (Comparing to Sun)
-        public int Mass { get; private set; }
+        public float Mass { get; private set; }
 
         /// Star Age (Giga-Years)
         public float StarAge { get; private set; }
@@ -75,8 +75,8 @@ namespace NasaProject
 
             if (_mass.Length > 0)
             {
-                Mass = (int)Math.Round(Double.Parse(_mass, NumberStyles.Any,
-                CultureInfo.InvariantCulture));
+                Mass = Single.Parse(_mass, NumberStyles.Any,
+                CultureInfo.InvariantCulture);
             }
 
             else

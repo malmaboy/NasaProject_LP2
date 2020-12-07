@@ -79,11 +79,88 @@ namespace NasaProject
             select planet;
         }
 
+        public void FilterStarName(string name)
+        {
+            filteredStars = 
+            from star in filteredStars
+            where star.Name == name
+            select star;
+        }
+        
+        public void FilterMaxStarTeff(float max)
+        {
+            filteredStars = 
+            from star in filteredStars
+            where star.Teff < max
+            select star;
+        }
+        public void FilterMinStarTeff(float min)
+        {
+            filteredStars = 
+            from star in filteredStars
+            where star.Teff > min
+            select star;
+        }
+
+        public void FilterMaxStarMass(int max)
+        {
+            filteredStars =
+            from star in filteredStars
+            where star.Mass < max
+            select star;
+        }
+
+
+        public void FilterMinStarMass(int min){
+            filteredStars = 
+            from star in filteredStars
+            where star.Mass > min
+            select star;
+        }
+
+        public void FilterMinStarRad(float min){
+            filteredStars =
+            from star in filteredStars
+            where star.Rad < min
+            select star;
+        }
+
+        
+        public void FilterMaxStarRad(float max){
+            filteredStars =
+            from star in filteredStars
+            where star.Rad > max
+            select star;
+        }
+
+        public void FilterMaxStarDistance(float max)
+        {
+            filteredStars = 
+            from star in filteredStars
+            where star.DistanceStarToSun < max
+            select star;
+        }
+        public void FilterMinStarDistance(float min)
+        {
+            filteredStars = 
+            from star in filteredStars
+            where star.DistanceStarToSun > min
+            select star;
+        }
+        
         public void PrintPlanets()
         {
             foreach(Planet planet in filteredPlanets)
             {
-                System.Console.WriteLine($"{planet.Name} {planet.Eqt}");
+                System.Console.WriteLine($"{planet.Name}");
+            }
+        }
+
+        public void PrintStars()
+        {
+            foreach(Star star in filteredStars)
+            {
+                System.Console.WriteLine($"{star.Name}");
             }
         }
     }
