@@ -1,56 +1,36 @@
 using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
-namespace NasaProject
-{
+namespace NasaProject {
     /// <summary>
     /// This class reads the file
     /// Does collections about planets and stars 
     /// </summary>
-    public class FileReader
-    {
-        private string filePath;
-        List<Planet> planets = new List<Planet>();
-        List<Star> stars = new List<Star>();
-
-        /// <summary>
-        /// Constructor
-        /// Gets the path file
-        /// </summary>
-        public FileReader()
-        {
-            filePath = Path.Combine(Environment.GetFolderPath(
-                Environment.SpecialFolder.Desktop), "File.csv");
-        }
+    public class FileReader {
+        List<Planet> planets = new List<Planet> ();
+        List<Star> stars = new List<Star> ();
 
         /// <summary>
         /// Read The File 
         /// </summary>
-        public void ReadFile()
-        {
+        public void ReadFile (string filePath) {
             string line;
             string[] lineValues;
             bool newStar;
 
-            using (FileStream fileStream = new FileStream(filePath,
-                FileMode.Open, FileAccess.Read))
-            {
+            using (FileStream fileStream = new FileStream (filePath,
+                FileMode.Open, FileAccess.Read)) {
                 using (StreamReader streamReader =
-                    new StreamReader(fileStream))
-                {
-                    while ((line = streamReader.ReadLine()) != null)
-                    {
-                        if (line.StartsWith("#") || line.StartsWith("pl_name"))
-                        {
+                    new StreamReader (fileStream)) {
+                    while ((line = streamReader.ReadLine ()) != null) {
+                        if (line.StartsWith ("#") || line.StartsWith ("pl_name")) {
                             continue;
-                        }
-                        else
-                        {
-                            lineValues = line.Split(",");
+                        } else {
+                            lineValues = line.Split (",");
 
-                            planets.Add(new Planet(
+                            planets.Add (new Planet (
                                 lineValues[0],
                                 lineValues[1],
                                 lineValues[5],
@@ -62,18 +42,15 @@ namespace NasaProject
 
                             newStar = true;
 
-                            for (int i = 0; i < stars.Count; i++)
-                            {
-                                if (stars[i].Name == lineValues[1])
-                                {
+                            for (int i = 0; i < stars.Count; i++) {
+                                if (stars[i].Name == lineValues[1]) {
                                     newStar = false;
                                     break;
                                 }
                             }
 
-                            if (newStar)
-                            {
-                                stars.Add(new Star(
+                            if (newStar) {
+                                stars.Add (new Star (
                                     lineValues[1],
                                     lineValues[23],
                                     lineValues[24],
@@ -88,5 +65,9 @@ namespace NasaProject
                 }
             }
         }
+
+        public List<Planet> GetPlanets () => planets;
+
+        public List<Star> GetStars () => stars;
     }
 }

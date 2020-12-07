@@ -1,10 +1,8 @@
 using System;
 using System.Globalization;
 
-namespace NasaProject
-{
-    public class Planet
-    {
+namespace NasaProject {
+    public class Planet {
         /// <summary>
         /// Variables
         /// </summary>
@@ -40,35 +38,34 @@ namespace NasaProject
         /// <param name="_rade"></param>
         /// <param name="_masse"></param>
         /// <param name="_eqt"></param>
-        public Planet(string _name, string _hostname,
+        public Planet (string _name, string _hostname,
             string _discMethod, string _discYear,
-            string _orbPer, string _rade, string _masse, string _eqt)
-        {
+            string _orbPer, string _rade, string _masse, string _eqt) {
             Name = _name;
             Hostname = _hostname;
             DiscMethod = _discMethod;
-            DiscYear = Int32.Parse(_discYear);
+            DiscYear = Int32.Parse (_discYear);
 
             if (_orbPer.Length > 0)
-                OrbPer = (int)Math.Round(Double.Parse(_orbPer, NumberStyles.Any,
+                OrbPer = (int) Math.Round (Double.Parse (_orbPer, NumberStyles.Any,
                     CultureInfo.InvariantCulture));
             else
                 OrbPer = 0;
 
             if (_rade.Length > 0)
-                Rade = Single.Parse(_rade, NumberStyles.Any,
+                Rade = Single.Parse (_rade, NumberStyles.Any,
                     CultureInfo.InvariantCulture);
             else
                 Rade = 0;
 
             if (_masse.Length > 0)
-                Masse = Single.Parse(_masse, NumberStyles.Any,
+                Masse = Single.Parse (_masse, NumberStyles.Any,
                     CultureInfo.InvariantCulture);
             else
                 Masse = 0;
 
             if (_eqt.Length > 0)
-                Eqt = Single.Parse(_eqt, NumberStyles.Any,
+                Eqt = Single.Parse (_eqt, NumberStyles.Any,
                     CultureInfo.InvariantCulture);
             else
                 Eqt = 0;
