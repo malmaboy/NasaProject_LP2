@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -81,22 +80,22 @@ namespace NasaProject
 
         public void FilterStarName(string name)
         {
-            filteredStars = 
+            filteredStars =
             from star in filteredStars
             where star.Name == name
             select star;
         }
-        
+
         public void FilterMaxStarTeff(float max)
         {
-            filteredStars = 
+            filteredStars =
             from star in filteredStars
             where star.Teff < max
             select star;
         }
         public void FilterMinStarTeff(float min)
         {
-            filteredStars = 
+            filteredStars =
             from star in filteredStars
             where star.Teff > min
             select star;
@@ -111,22 +110,25 @@ namespace NasaProject
         }
 
 
-        public void FilterMinStarMass(int min){
-            filteredStars = 
+        public void FilterMinStarMass(int min)
+        {
+            filteredStars =
             from star in filteredStars
             where star.Mass > min
             select star;
         }
 
-        public void FilterMinStarRad(float min){
+        public void FilterMinStarRad(float min)
+        {
             filteredStars =
             from star in filteredStars
             where star.Rad < min
             select star;
         }
 
-        
-        public void FilterMaxStarRad(float max){
+
+        public void FilterMaxStarRad(float max)
+        {
             filteredStars =
             from star in filteredStars
             where star.Rad > max
@@ -135,32 +137,32 @@ namespace NasaProject
 
         public void FilterMaxStarDistance(float max)
         {
-            filteredStars = 
+            filteredStars =
             from star in filteredStars
             where star.DistanceStarToSun < max
             select star;
         }
         public void FilterMinStarDistance(float min)
         {
-            filteredStars = 
+            filteredStars =
             from star in filteredStars
             where star.DistanceStarToSun > min
             select star;
         }
-        
-        public void PrintPlanets()
+
+        public IEnumerable<Planet> GetFilteredPlanets()
         {
-            foreach(Planet planet in filteredPlanets)
+            foreach (Planet planet in filteredPlanets)
             {
-                System.Console.WriteLine($"{planet.Name}");
+                yield return planet;
             }
         }
 
-        public void PrintStars()
+        public IEnumerable<Star> GetFilteredStars()
         {
-            foreach(Star star in filteredStars)
+            foreach (Star star in filteredStars)
             {
-                System.Console.WriteLine($"{star.Name}");
+                yield return star;
             }
         }
     }

@@ -1,13 +1,13 @@
-﻿using System;
+﻿namespace NasaProject
+{
+    class Program
+    {
 
-namespace NasaProject {
-    class Program {
-        
-        static void Main (string[] args) {
-            ReadArgs reader;
-            reader = new ReadArgs();
-            
-            reader.Read(args);
+        static void Main(string[] args)
+        {
+            UserInterface UI = new UserInterface();
+
+            UI.Start(args);
         }
     }
 }
