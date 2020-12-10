@@ -33,7 +33,7 @@
 - No início do projeto, começámos por implementar a classe `FileReader` e `Planet`, em que na classe `FileReader` é feita a leitura do ficheiro e dos argumentos inseridos pelo utilizador. Na classe `Planet` estão presentes todos os parâmetros possíveis que podem ser utilizados para obter informações sobre os planetas. De seguida, implementámos a classe `Filter` cujo objetivo é filtrar os argumentos dados pelo utilizador e devolver as informações dos mesmos. A classe `User Interface` recebe o argumentos dados pelo utilizador, e imprime os dados e erros caso o utilizador insira argumentos inválidos ou localizações inválidas. Durante o projeto apagámos a classe  `ReadArgs`, pois esta era idêntica à `User Interface`.
 
   - As Relações entre as classes estão demonstradas no diagrama UML seguinte:
-![diagrama](../NasaProjectDiagram.png)
+![diagrama](NasaProjectDiagram.png)
 
 ### Observações
 
