@@ -19,7 +19,7 @@ namespace NasaProject
             filteredPlanets = file.GetPlanets();
             filteredStars = file.GetStars();
 
-            
+
         }
 
         public void FilterName(string name)
@@ -41,7 +41,7 @@ namespace NasaProject
             filteredPlanets =
                 from planet in filteredPlanets
                 where Double.Parse(planet.Eqt, NumberStyles.Any,
-                     CultureInfo.InvariantCulture) < max
+                     CultureInfo.InvariantCulture) <= max
                 select planet;
         }
         public void FilterMinEqt(float min)
@@ -55,7 +55,7 @@ namespace NasaProject
             filteredPlanets =
                 from planet in filteredPlanets
                 where Double.Parse(planet.Eqt, NumberStyles.Any,
-                    CultureInfo.InvariantCulture) > min
+                    CultureInfo.InvariantCulture) >= min
                 select planet;
         }
 
@@ -70,7 +70,7 @@ namespace NasaProject
             filteredPlanets =
                 from planet in filteredPlanets
                 where Double.Parse(planet.Rade, NumberStyles.Any,
-                    CultureInfo.InvariantCulture) < max
+                    CultureInfo.InvariantCulture) <= max
                 select planet;
         }
         public void FilterMinRade(float min)
@@ -84,7 +84,7 @@ namespace NasaProject
             filteredPlanets =
                 from planet in filteredPlanets
                 where Single.Parse(planet.Rade, NumberStyles.Any,
-                    CultureInfo.InvariantCulture) > min
+                    CultureInfo.InvariantCulture) >= min
                 select planet;
         }
 
@@ -106,7 +106,7 @@ namespace NasaProject
             filteredPlanets =
                 from planet in filteredPlanets
                 where Int32.Parse(planet.DiscYear, NumberStyles.Any,
-                    CultureInfo.InvariantCulture) < max
+                    CultureInfo.InvariantCulture) <= max
                 select planet;
         }
         public void FilterMinDiscYear(int min)
@@ -120,7 +120,7 @@ namespace NasaProject
             filteredPlanets =
                 from planet in filteredPlanets
                 where Int32.Parse(planet.DiscYear, NumberStyles.Any,
-                    CultureInfo.InvariantCulture) > min
+                    CultureInfo.InvariantCulture) >= min
                 select planet;
         }
 
@@ -134,63 +134,119 @@ namespace NasaProject
 
         public void FilterMaxStarTeff(float max)
         {
+
             filteredStars =
                 from star in filteredStars
-                where star.Teff < max
+                where star.Teff != "N/A" && star.Teff != ""
+                select star;
+
+            filteredStars =
+                from star in filteredStars
+                where Single.Parse(star.Teff, NumberStyles.Any,
+                    CultureInfo.InvariantCulture) <= max
                 select star;
         }
         public void FilterMinStarTeff(float min)
         {
+
             filteredStars =
                 from star in filteredStars
-                where star.Teff > min
+                where star.Teff != "N/A" && star.Teff != ""
+                select star;
+
+            filteredStars =
+                from star in filteredStars
+                where Single.Parse(star.Teff, NumberStyles.Any,
+                    CultureInfo.InvariantCulture) >= min
                 select star;
         }
 
-        public void FilterMaxStarMass(int max)
+        public void FilterMaxStarMass(float max)
         {
+
             filteredStars =
                 from star in filteredStars
-                where star.Mass < max
+                where star.Mass != "N/A" && star.Teff != ""
+                select star;
+
+            filteredStars =
+                from star in filteredStars
+                where Single.Parse(star.Mass, NumberStyles.Any,
+                    CultureInfo.InvariantCulture) <= max
                 select star;
         }
 
-        public void FilterMinStarMass(int min)
+        public void FilterMinStarMass(float min)
         {
+
             filteredStars =
                 from star in filteredStars
-                where star.Mass > min
+                where star.Mass != "N/A" && star.Teff != ""
+                select star;
+
+            filteredStars =
+                from star in filteredStars
+                where Single.Parse(star.Mass, NumberStyles.Any,
+                    CultureInfo.InvariantCulture) >= min
                 select star;
         }
 
         public void FilterMinStarRad(float min)
         {
+
             filteredStars =
                 from star in filteredStars
-                where star.Rad < min
+                where star.Rad != "N/A" && star.Teff != ""
+                select star;
+
+            filteredStars =
+                from star in filteredStars
+                where Single.Parse(star.Rad, NumberStyles.Any,
+                    CultureInfo.InvariantCulture) <= min
                 select star;
         }
 
         public void FilterMaxStarRad(float max)
         {
+
             filteredStars =
                 from star in filteredStars
-                where star.Rad > max
+                where star.Rad != "N/A" && star.Teff != ""
+                select star;
+
+            filteredStars =
+                from star in filteredStars
+                where Single.Parse(star.Rad, NumberStyles.Any,
+                    CultureInfo.InvariantCulture) >= max
                 select star;
         }
 
         public void FilterMaxStarDistance(float max)
         {
+
             filteredStars =
                 from star in filteredStars
-                where star.DistanceStarToSun < max
+                where star.DistanceStarToSun != "N/A" && star.Teff != ""
+                select star;
+
+            filteredStars =
+                from star in filteredStars
+                where Single.Parse(star.DistanceStarToSun, NumberStyles.Any,
+                    CultureInfo.InvariantCulture) <= max
                 select star;
         }
         public void FilterMinStarDistance(float min)
         {
+
             filteredStars =
                 from star in filteredStars
-                where star.DistanceStarToSun > min
+                where star.DistanceStarToSun != "N/A" && star.Teff != ""
+                select star;
+
+            filteredStars =
+                from star in filteredStars
+                where Single.Parse(star.DistanceStarToSun, NumberStyles.Any,
+                    CultureInfo.InvariantCulture) >= min
                 select star;
         }
 

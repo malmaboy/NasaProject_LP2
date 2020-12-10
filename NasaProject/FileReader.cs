@@ -14,10 +14,13 @@ namespace NasaProject
         private List<Planet> planets;
         private List<Star> stars;
         private List<string> lines;
+        private int headers;
         int[] indexes;
+        private UserInterface userInterface;
 
         public FileReader()
         {
+            userInterface = new UserInterface();
             planets = new List<Planet>();
             stars = new List<Star>();
             lines = new List<string>();
@@ -54,6 +57,8 @@ namespace NasaProject
 
                             if (line.Contains("pl_name"))
                             {
+                                headers = lineValues.Length;
+
                                 indexes[0] = Array.IndexOf(
                                     lineValues, "pl_name");
                                 indexes[1] = Array.IndexOf(
@@ -70,14 +75,33 @@ namespace NasaProject
                                     lineValues, "pl_masse");
                                 indexes[7] = Array.IndexOf(
                                     lineValues, "pl_eqt");
+                                indexes[8] = Array.IndexOf(
+                                    lineValues, "st_teff");
+                                indexes[9] = Array.IndexOf(
+                                    lineValues, "st_rad");
+                                indexes[10] = Array.IndexOf(
+                                    lineValues, "st_mass");
+                                indexes[11] = Array.IndexOf(
+                                    lineValues, "st_age");
+                                indexes[12] = Array.IndexOf(
+                                    lineValues, "st_vsin");
+                                indexes[13] = Array.IndexOf(
+                                    lineValues, "st_rotp");
+                                indexes[14] = Array.IndexOf(
+                                    lineValues, "sy_dist");
+
+                                if (indexes[0] == -1 || indexes[1] == -1)
+                                    userInterface.FileFormatError();
                             }
-                            else
+                            else if (lineValues.Length == headers)
                             {
+                                if (lineValues[indexes[0]] == "" ||
+                                    lineValues[indexes[1]] == "")
+                                    userInterface.FileFormatError();
+
                                 planets.Add(new Planet(
-                                    indexes[0] != -1 ? lineValues[indexes[0]] :
-                                    "N/A",
-                                    indexes[1] != -1 ? lineValues[indexes[1]] :
-                                    "N/A",
+                                    lineValues[indexes[0]],
+                                    lineValues[indexes[1]],
                                     indexes[2] != -1 ? lineValues[indexes[2]] :
                                     "N/A",
                                     indexes[3] != -1 ? lineValues[indexes[3]] :
@@ -107,17 +131,28 @@ namespace NasaProject
                                 if (newStar)
                                 {
                                     stars.Add(new Star(
-                                        "0",
-                                        "0",
-                                        "0",
-                                        "0",
-                                        "0",
-                                        "0",
-                                        "0",
-                                        "0"));
+                                        indexes[1] != -1 ? lineValues
+                                        [indexes[1]] : "N/A",
+                                        indexes[8] != -1 ? lineValues
+                                        [indexes[8]] : "N/A",
+                                        indexes[9] != -1 ? lineValues
+                                        [indexes[9]] : "N/A",
+                                        indexes[10] != -1 ? lineValues
+                                        [indexes[10]] : "N/A",
+                                        indexes[11] != -1 ? lineValues
+                                        [indexes[11]] : "N/A",
+                                        indexes[12] != -1 ? lineValues
+                                        [indexes[12]] : "N/A",
+                                        indexes[13] != -1 ? lineValues
+                                        [indexes[13]] : "N/A",
+                                        indexes[14] != -1 ? lineValues
+                                        [indexes[14]] : "N/A"));
                                 }
                             }
-
+                            else
+                            {
+                                userInterface.FileFormatError();
+                            }
                         }
                     }
                     else if (mode == 1)

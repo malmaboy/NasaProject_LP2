@@ -14,24 +14,24 @@ namespace NasaProject
         /// Star Name
         public string Name { get; private set; }
         /// Star Tempererature (kelvins)
-        public float Teff { get; private set; }
+        public string Teff { get; private set; }
         /// Star Radius(comparing to the sun)
-        public float Rad { get; private set; }
+        public string Rad { get; private set; }
 
         ///  Star Mass (Comparing to Sun)
-        public float Mass { get; private set; }
+        public string Mass { get; private set; }
 
         /// Star Age (Giga-Years)
-        public float StarAge { get; private set; }
+        public string StarAge { get; private set; }
 
         /// Star Rotatation Velocity(km/s)
-        public float StarRotationVelocity { get; private set; }
+        public string StarRotationVelocity { get; private set; }
 
         /// Star Rotation Period (days)
-        public float StarRotationPeriod { get; private set; }
+        public string StarRotationPeriod { get; private set; }
 
         /// Distance to Sun (Parcecs)
-        public double DistanceStarToSun { get; private set; }
+        public string DistanceStarToSun { get; private set; }
 
         /// <summary>
         /// Star Constructor 
@@ -52,77 +52,17 @@ namespace NasaProject
             /// </summary>
             /// <value></value>
             Name = _name;
+            Teff = _teff != "" ? _teff : "N/A";
+            Rad = _rad != "" ? _rad : "N/A";
+            Mass = _mass != "" ? _mass : "N/A";
+            StarAge = _starAge != "" ? _starAge : "N/A";
+            StarRotationVelocity = _starRotationVelocity != "" ?
+            _starRotationVelocity : "N/A";
+            StarRotationPeriod = _starRotationPeriod != "" ?
+             _starRotationPeriod : "N/A";
+            DistanceStarToSun = _distanceStarToSun != "" ?
+            _distanceStarToSun : "N/A";
 
-            if (_teff.Length > 0)
-            {
-                Teff = Single.Parse(_teff, NumberStyles.Any,
-                CultureInfo.InvariantCulture);
-            }
-            else
-            {
-                Teff = 0;
-            }
-
-            if (_rad.Length > 0)
-            {
-                Rad = Single.Parse(_rad, NumberStyles.Any,
-                CultureInfo.InvariantCulture);
-            }
-            else
-            {
-                Rad = 0;
-            }
-
-            if (_mass.Length > 0)
-            {
-                Mass = Single.Parse(_mass, NumberStyles.Any,
-                CultureInfo.InvariantCulture);
-            }
-
-            else
-            {
-                Mass = 0;
-            }
-
-            if (_starAge.Length > 0)
-            {
-                StarAge = Single.Parse(_starAge, NumberStyles.Any,
-                CultureInfo.InvariantCulture);
-            }
-            else
-            {
-                StarAge = 0;
-            }
-
-            if (_starRotationVelocity.Length > 0)
-            {
-                StarRotationVelocity = Single.Parse(_starRotationVelocity, NumberStyles.Any,
-                    CultureInfo.InvariantCulture);
-            }
-            else
-            {
-                StarRotationVelocity = 0;
-            }
-
-            if (_starRotationPeriod.Length > 0)
-            {
-                StarRotationPeriod = Single.Parse(_starRotationPeriod, NumberStyles.Any,
-                    CultureInfo.InvariantCulture);
-            }
-            else
-            {
-                StarRotationPeriod = 0;
-            }
-
-            if (_distanceStarToSun.Length > 0)
-            {
-                DistanceStarToSun = Single.Parse(_distanceStarToSun, NumberStyles.Any,
-                    CultureInfo.InvariantCulture);
-            }
-            else
-            {
-                DistanceStarToSun = 0;
-            }
         }
     }
 }
