@@ -37,4 +37,12 @@
 
 ### Observações
 
-Durante o projeto tivemos várias dificuldades em definir o tipo dos valores lidos (int, float, string,...) e por consequência alterámos várias vezes a forma como eram lidos os valores.
+Durante o projeto tivemos várias dificuldades em definir o tipo dos valores lidos (int, float, string,...) e por consequência alterámos várias vezes a forma como eram lidos os valores. 
+
+<br>  
+
+---
+
+<br>
+
+## [Link para repositorio](https://github.com/malmaboy/NasaProject_LP2)
