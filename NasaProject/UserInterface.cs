@@ -93,13 +93,35 @@ namespace NasaProject
 
         }
         /// <summary>
-        /// 
+        /// Planets Filters
         /// </summary>
         /// <param name="args"></param>
         private void SearchPlanets(string[] args)
         {
             for (int i = 0; i < args.Length; i++)
             {
+                if (args[i] =="--pl_name")
+                {
+                    filteredSearch.FilterName(args[i+1]);
+                }
+                if(args[i] == "--hostname"){
+                    filteredSearch.FilterStarName(args[i+1]);
+                }
+                if(args[i] == "--discmethod"){
+                    filteredSearch.FilterDiscMethod(args[i+1]);
+                }
+                if (args[i] == "--years-min")
+                {
+                    filteredSearch.FilterMinDiscYear(Int32.Parse(args[i + 1],
+                        NumberStyles.Any,
+                        CultureInfo.InvariantCulture));
+                }
+                if (args[i] == "--years-max")
+                {
+                    filteredSearch.FilterMaxDiscYear(Int32.Parse(args[i + 1],
+                        NumberStyles.Any,
+                        CultureInfo.InvariantCulture));
+                }
                 if (args[i] == "--eqt-max")
                 {
                     filteredSearch.FilterMaxEqt(Single.Parse(args[i + 1],
@@ -120,28 +142,72 @@ namespace NasaProject
                     filteredSearch.FilterMinRade(Single.Parse(args[i + 1],
                         NumberStyles.Any, CultureInfo.InvariantCulture));
                 }
-                if (args[i] == "--years-min")
-                {
-                    filteredSearch.FilterMinDiscYear(Int32.Parse(args[i + 1],
-                        NumberStyles.Any,
+                if(args[i] == "--orbper-min"){
+                    filteredSearch.FilterMinOrbPer(Int32.Parse(args[i + 1],
+                    NumberStyles.Any,
                         CultureInfo.InvariantCulture));
                 }
-                if (args[i] == "--years-max")
-                {
-                    filteredSearch.FilterMaxDiscYear(Int32.Parse(args[i + 1],
-                        NumberStyles.Any,
+                if(args[i] == "--orbper-max"){
+                    filteredSearch.FilterMaxOrbPer(Int32.Parse(args[i + 1],
+                    NumberStyles.Any,
                         CultureInfo.InvariantCulture));
-
+                }
+                if(args[i] == "--masse-min"){
+                    filteredSearch.FilterMaxMasse(Single.Parse(args[i + 1],
+                    NumberStyles.Any,
+                        CultureInfo.InvariantCulture));
+                }
+                if(args[i] == "--masse-max"){
+                    filteredSearch.FilterMinMasse(Single.Parse(args[i + 1],
+                    NumberStyles.Any,
+                        CultureInfo.InvariantCulture));
                 }
             }
 
             PrintPlanetResults();
         }
 
+        /// <summary>
+        /// Star Filters
+        /// </summary>
+        /// <param name="args"></param>
         private void SearchStars(string[] args)
         {
             for (int i = 0; i < args.Length; i++)
             {
+                if(args[i] == "--st_name"){
+                    filteredSearch.FilterStarName(args[i + 1]);
+                }
+                if(args[i] == "--teff-max"){
+                    filteredSearch.FilterMaxStarTeff(Single.Parse(args[i + 1],
+                    NumberStyles.Any,
+                        CultureInfo.InvariantCulture));
+                }
+                if(args[i] == "--teff-min"){
+                    filteredSearch.FilterMinStarTeff(Single.Parse(args[i + 1],
+                    NumberStyles.Any,
+                        CultureInfo.InvariantCulture));
+                }
+                if(args[i] == "--rad-max"){
+                    filteredSearch.FilterMaxRade(Single.Parse(args[i + 1],
+                    NumberStyles.Any,
+                        CultureInfo.InvariantCulture));
+                }
+                if(args[i] == "--rad-min"){
+                    filteredSearch.FilterMinRade(Single.Parse(args[i + 1],
+                    NumberStyles.Any,
+                        CultureInfo.InvariantCulture));
+                }
+                if(args[i] == "--mass-max"){
+                    filteredSearch.FilterMaxMasse(Single.Parse(args[i + 1],
+                    NumberStyles.Any,
+                        CultureInfo.InvariantCulture));
+                }
+                if(args[i] == "--mass-min"){
+                    filteredSearch.FilterMinMasse(Single.Parse(args[i + 1],
+                    NumberStyles.Any,
+                        CultureInfo.InvariantCulture));
+                }
                 if (args[i] == "--dist-max")
                 {
                     filteredSearch.FilterMaxStarDistance(Single.Parse(args[i + 1],
@@ -154,10 +220,42 @@ namespace NasaProject
                     filteredSearch.FilterMinStarDistance(Single.Parse(args[i + 1],
                         NumberStyles.Any, CultureInfo.InvariantCulture));
                 }
+                if(args[i] == "--age-max"){
+                    filteredSearch.FilterMaxStarAge(Int32.Parse(args[i + 1],
+                    NumberStyles.Any,
+                        CultureInfo.InvariantCulture));
+                }
+                if(args[i] == "--age-min"){
+                    filteredSearch.FilterMaxStarAge(Int32.Parse(args[i + 1],
+                    NumberStyles.Any,
+                        CultureInfo.InvariantCulture));
+                }
+                if(args[i] == "--rotv-max"){
+                    filteredSearch.FilterMaxStarRVelocity(Single.Parse(args[i + 1],
+                    NumberStyles.Any,
+                        CultureInfo.InvariantCulture));
+                }
+                if(args[i] == "--rotv-min"){
+                    filteredSearch.FilterMinStarRVelocity(Single.Parse(args[i + 1],
+                    NumberStyles.Any,
+                        CultureInfo.InvariantCulture));
+                }
+                if(args[i] == "--rotp-max"){
+                    filteredSearch.FilterMaxStarRPeriod(Single.Parse(args[i + 1],
+                    NumberStyles.Any,
+                        CultureInfo.InvariantCulture));
+                }
+                if(args[i] == "--rotp-min"){
+                    filteredSearch.FilterMinStarRPeriod(Single.Parse(args[i + 1],
+                    NumberStyles.Any,
+                        CultureInfo.InvariantCulture));
+                }
+
 
             }
 
             PrintStarResults();
+
         }
 
         /// <summary>
@@ -166,7 +264,7 @@ namespace NasaProject
         private void PrintTableTopPlanets()
         {
             Console.WriteLine("\n\nPlanet name     Star name      Disc. method   " +
-                "  Year    Orbital         Radius      Mass        Eq. Temp.");
+                "  Year    Orbital         Radius      Mass        Eq. Temp");
             Console.WriteLine("                                      " +
                 "                  Period (days)   (vs Earth)  (vs Earth)   " +
                 "(Kelvin)");
@@ -180,7 +278,7 @@ namespace NasaProject
         private void PrintTableTopStars()
         {
             Console.WriteLine("\n\nStar name     Star Temperature      Star Radius   " +
-                "  Star Mass         Star Age        Star Rotation.");
+                "  Star Mass         Star Age        Star Rotation        Star Distance to Sun");
             Console.WriteLine("                                      " +
                 "                  Period (days)   (vs Earth)  (vs Earth)   " +
                 "(Kelvin)");
@@ -216,7 +314,7 @@ namespace NasaProject
                 System.Console.WriteLine(
                     $"{star.Name}\t\t{star.Teff}\t\t{star.Rad}" +
                     $"\t\t{star.Mass}\t\t{star.StarAge}\t" +
-                    $"\t{star.StarRotationVelocity}");
+                    $"\t{star.StarRotationVelocity}\t{star.DistanceStarToSun}");
             }
         }
 

@@ -46,9 +46,9 @@ namespace NasaProject
             Hostname = _hostname != "" ? _hostname : "N/A";
             DiscMethod = _discMethod != "" ? _discMethod : "N/A";
             DiscYear = _discYear != "" ? _discYear : "N/A";
-            OrbPer = _orbPer != "" ? _orbPer : "N/A";
+            OrbPer = _orbPer != "" ? _orbPer : "N/A"; 
             Rade = _rade != "" ? _rade : "N/A";
-            Masse = _masse != "" ? _masse : "N/A";
+            Masse = _masse != "" ? _masse : "N/A"; 
             Eqt = _eqt != "" ? _eqt : "N/A";
         }
     }
