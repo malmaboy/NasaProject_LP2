@@ -169,7 +169,7 @@ namespace NasaProject {
 
             foreach (Planet planet in filteredSearch.GetFilteredPlanets ()) {
                 System.Console.WriteLine (
-                    $"{planet.Name}\t{planet.Hostname}\t{planet.DiscMethod}" +
+                    $"{planet.Name}\t{planet.Hostname}\t{planet.DiscMethod}" + 
                     $"\t{planet.DiscYear}\t{planet.OrbPer}\t" +
                     $"{planet.Rade}\t{planet.Masse}\t{planet.Eqt}");
             }
@@ -203,16 +203,22 @@ namespace NasaProject {
         /// </summary>
         /// <param name="e">Expection Error</param>
         private void FileError (Exception e) {
-            Console.WriteLine ("Ocorreu um erro.");
+            Console.WriteLine ($"Ocorreu um erro.\n{e}");
 
             switch (e) {
                 case FileNotFoundException:
                     Console.WriteLine (
                         "O ficheiro especificado não foi encontrado.");
                     break;
+
                 case DirectoryNotFoundException:
                     Console.WriteLine (
                         "A diretoria especificada não foi encontrada.");
+                    break;
+
+                case ArgumentException:
+                    Console.WriteLine (
+                        "Existe pelo menos um argumento em falta.");
                     break;
 
                 case IndexOutOfRangeException:
