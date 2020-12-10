@@ -1,3 +1,4 @@
+
 using System;
 using System.Globalization;
 using System.IO;
@@ -10,17 +11,20 @@ namespace NasaProject
     /// </summary>
     public class UserInterface
     {
-        /// <summary>
-        /// The 
+        /// Variables 
+        /// 
+        ///         /// <summary>
+        /// The location of the file
         /// </summary>
         /// <value></value>
         public string FilePath { get; private set; }
         /// <summary>
-        /// 
+        /// The filter
         /// </summary>
         private Filter filteredSearch;
+
         /// <summary>
-        /// 
+        /// Read the file and the arguments given by the user 
         /// </summary>
         /// <param name="args">Arguments given by the user</param>
         public void Start(string[] args)
@@ -95,72 +99,85 @@ namespace NasaProject
         /// <summary>
         /// Planets Filters
         /// </summary>
-        /// <param name="args"></param>
+        /// <param name="args">Arguments given by the user </param>
         private void SearchPlanets(string[] args)
         {
             for (int i = 0; i < args.Length; i++)
             {
-                if (args[i] =="--pl_name")
+                try
                 {
-                    filteredSearch.FilterName(args[i+1]);
-                }
-                if(args[i] == "--hostname"){
-                    filteredSearch.FilterStarName(args[i+1]);
-                }
-                if(args[i] == "--discmethod"){
-                    filteredSearch.FilterDiscMethod(args[i+1]);
-                }
-                if (args[i] == "--years-min")
-                {
-                    filteredSearch.FilterMinDiscYear(Int32.Parse(args[i + 1],
+                    if (args[i] == "--pl_name")
+                    {
+                        filteredSearch.FilterName(args[i + 1]);
+                    }
+                    else if (args[i] == "--hostname")
+                    {
+                        filteredSearch.FilterStarName(args[i + 1]);
+                    }
+                    else if (args[i] == "--discmethod")
+                    {
+                        filteredSearch.FilterDiscMethod(args[i + 1]);
+                    }
+                    else if (args[i] == "--years-min")
+                    {
+                        filteredSearch.FilterMinDiscYear(Int32.Parse(args[i + 1],
+                            NumberStyles.Any,
+                            CultureInfo.InvariantCulture));
+                    }
+                    else if (args[i] == "--years-max")
+                    {
+                        filteredSearch.FilterMaxDiscYear(Int32.Parse(args[i + 1],
+                            NumberStyles.Any,
+                            CultureInfo.InvariantCulture));
+                    }
+                    else if (args[i] == "--eqt-max")
+                    {
+                        filteredSearch.FilterMaxEqt(Single.Parse(args[i + 1],
+                            NumberStyles.Any, CultureInfo.InvariantCulture));
+                    }
+                    else if (args[i] == "--eqt-min")
+                    {
+                        filteredSearch.FilterMinEqt(Single.Parse(args[i + 1],
+                            NumberStyles.Any, CultureInfo.InvariantCulture));
+                    }
+                    else if (args[i] == "--rade-max")
+                    {
+                        filteredSearch.FilterMaxRade(Single.Parse(args[i + 1],
+                            NumberStyles.Any, CultureInfo.InvariantCulture));
+                    }
+                    else if (args[i] == "--rade-min")
+                    {
+                        filteredSearch.FilterMinRade(Single.Parse(args[i + 1],
+                            NumberStyles.Any, CultureInfo.InvariantCulture));
+                    }
+                    else if (args[i] == "--orbper-min")
+                    {
+                        filteredSearch.FilterMinOrbPer(Int32.Parse(args[i + 1],
                         NumberStyles.Any,
-                        CultureInfo.InvariantCulture));
-                }
-                if (args[i] == "--years-max")
-                {
-                    filteredSearch.FilterMaxDiscYear(Int32.Parse(args[i + 1],
+                            CultureInfo.InvariantCulture));
+                    }
+                    else if (args[i] == "--orbper-max")
+                    {
+                        filteredSearch.FilterMaxOrbPer(Int32.Parse(args[i + 1],
                         NumberStyles.Any,
-                        CultureInfo.InvariantCulture));
+                            CultureInfo.InvariantCulture));
+                    }
+                    else if (args[i] == "--masse-min")
+                    {
+                        filteredSearch.FilterMaxMasse(Single.Parse(args[i + 1],
+                        NumberStyles.Any,
+                            CultureInfo.InvariantCulture));
+                    }
+                    else if (args[i] == "--masse-max")
+                    {
+                        filteredSearch.FilterMinMasse(Single.Parse(args[i + 1],
+                        NumberStyles.Any,
+                            CultureInfo.InvariantCulture));
+                    }
                 }
-                if (args[i] == "--eqt-max")
+                catch (Exception e)
                 {
-                    filteredSearch.FilterMaxEqt(Single.Parse(args[i + 1],
-                        NumberStyles.Any, CultureInfo.InvariantCulture));
-                }
-                if (args[i] == "--eqt-min")
-                {
-                    filteredSearch.FilterMinEqt(Single.Parse(args[i + 1],
-                        NumberStyles.Any, CultureInfo.InvariantCulture));
-                }
-                if (args[i] == "--rade-max")
-                {
-                    filteredSearch.FilterMaxRade(Single.Parse(args[i + 1],
-                        NumberStyles.Any, CultureInfo.InvariantCulture));
-                }
-                if (args[i] == "--rade-min")
-                {
-                    filteredSearch.FilterMinRade(Single.Parse(args[i + 1],
-                        NumberStyles.Any, CultureInfo.InvariantCulture));
-                }
-                if(args[i] == "--orbper-min"){
-                    filteredSearch.FilterMinOrbPer(Int32.Parse(args[i + 1],
-                    NumberStyles.Any,
-                        CultureInfo.InvariantCulture));
-                }
-                if(args[i] == "--orbper-max"){
-                    filteredSearch.FilterMaxOrbPer(Int32.Parse(args[i + 1],
-                    NumberStyles.Any,
-                        CultureInfo.InvariantCulture));
-                }
-                if(args[i] == "--masse-min"){
-                    filteredSearch.FilterMaxMasse(Single.Parse(args[i + 1],
-                    NumberStyles.Any,
-                        CultureInfo.InvariantCulture));
-                }
-                if(args[i] == "--masse-max"){
-                    filteredSearch.FilterMinMasse(Single.Parse(args[i + 1],
-                    NumberStyles.Any,
-                        CultureInfo.InvariantCulture));
+                    ArgumentError(e);
                 }
             }
 
@@ -175,80 +192,100 @@ namespace NasaProject
         {
             for (int i = 0; i < args.Length; i++)
             {
-                if(args[i] == "--st_name"){
-                    filteredSearch.FilterStarName(args[i + 1]);
-                }
-                if(args[i] == "--teff-max"){
-                    filteredSearch.FilterMaxStarTeff(Single.Parse(args[i + 1],
-                    NumberStyles.Any,
-                        CultureInfo.InvariantCulture));
-                }
-                if(args[i] == "--teff-min"){
-                    filteredSearch.FilterMinStarTeff(Single.Parse(args[i + 1],
-                    NumberStyles.Any,
-                        CultureInfo.InvariantCulture));
-                }
-                if(args[i] == "--rad-max"){
-                    filteredSearch.FilterMaxRade(Single.Parse(args[i + 1],
-                    NumberStyles.Any,
-                        CultureInfo.InvariantCulture));
-                }
-                if(args[i] == "--rad-min"){
-                    filteredSearch.FilterMinRade(Single.Parse(args[i + 1],
-                    NumberStyles.Any,
-                        CultureInfo.InvariantCulture));
-                }
-                if(args[i] == "--mass-max"){
-                    filteredSearch.FilterMaxMasse(Single.Parse(args[i + 1],
-                    NumberStyles.Any,
-                        CultureInfo.InvariantCulture));
-                }
-                if(args[i] == "--mass-min"){
-                    filteredSearch.FilterMinMasse(Single.Parse(args[i + 1],
-                    NumberStyles.Any,
-                        CultureInfo.InvariantCulture));
-                }
-                if (args[i] == "--dist-max")
+                try
                 {
-                    filteredSearch.FilterMaxStarDistance(Single.Parse(args[i + 1],
+                    if (args[i] == "--st_name")
+                    {
+                        filteredSearch.FilterStarName(args[i + 1]);
+                    }
+                    else if (args[i] == "--teff-max")
+                    {
+                        filteredSearch.FilterMaxStarTeff(Single.Parse(args[i + 1],
                         NumberStyles.Any,
-                        CultureInfo.InvariantCulture));
-                }
+                            CultureInfo.InvariantCulture));
+                    }
+                    else if (args[i] == "--teff-min")
+                    {
+                        filteredSearch.FilterMinStarTeff(Single.Parse(args[i + 1],
+                        NumberStyles.Any,
+                            CultureInfo.InvariantCulture));
+                    }
+                    else if (args[i] == "--rad-max")
+                    {
+                        filteredSearch.FilterMaxRade(Single.Parse(args[i + 1],
+                        NumberStyles.Any,
+                            CultureInfo.InvariantCulture));
+                    }
+                    else if (args[i] == "--rad-min")
+                    {
+                        filteredSearch.FilterMinRade(Single.Parse(args[i + 1],
+                        NumberStyles.Any,
+                            CultureInfo.InvariantCulture));
+                    }
+                    else if (args[i] == "--mass-max")
+                    {
+                        filteredSearch.FilterMaxMasse(Single.Parse(args[i + 1],
+                        NumberStyles.Any,
+                            CultureInfo.InvariantCulture));
+                    }
+                    else if (args[i] == "--mass-min")
+                    {
+                        filteredSearch.FilterMinMasse(Single.Parse(args[i + 1],
+                        NumberStyles.Any,
+                            CultureInfo.InvariantCulture));
+                    }
+                    else if (args[i] == "--dist-max")
+                    {
+                        filteredSearch.FilterMaxStarDistance(Single.Parse(args[i + 1],
+                            NumberStyles.Any,
+                            CultureInfo.InvariantCulture));
+                    }
 
-                if (args[i] == "--dist-min")
+                    else if (args[i] == "--dist-min")
+                    {
+                        filteredSearch.FilterMinStarDistance(Single.Parse(args[i + 1],
+                            NumberStyles.Any, CultureInfo.InvariantCulture));
+                    }
+                    else if (args[i] == "--age-max")
+                    {
+                        filteredSearch.FilterMaxStarAge(Int32.Parse(args[i + 1],
+                        NumberStyles.Any,
+                            CultureInfo.InvariantCulture));
+                    }
+                    else if (args[i] == "--age-min")
+                    {
+                        filteredSearch.FilterMaxStarAge(Int32.Parse(args[i + 1],
+                        NumberStyles.Any,
+                            CultureInfo.InvariantCulture));
+                    }
+                    else if (args[i] == "--rotv-max")
+                    {
+                        filteredSearch.FilterMaxStarRVelocity(Single.Parse(args[i + 1],
+                        NumberStyles.Any,
+                            CultureInfo.InvariantCulture));
+                    }
+                    else if (args[i] == "--rotv-min")
+                    {
+                        filteredSearch.FilterMinStarRVelocity(Single.Parse(args[i + 1],
+                        NumberStyles.Any,
+                            CultureInfo.InvariantCulture));
+                    }
+                    else if (args[i] == "--rotp-max")
+                    {
+                        filteredSearch.FilterMaxStarRPeriod(Single.Parse(args[i + 1],
+                        NumberStyles.Any,
+                            CultureInfo.InvariantCulture));
+                    }
+                    else if (args[i] == "--rotp-min")
+                    {
+                        filteredSearch.FilterMinStarRPeriod(Single.Parse(args[i + 1],
+                        NumberStyles.Any,
+                            CultureInfo.InvariantCulture));
+                    }
+                }
+                catch (Exception e)
                 {
-                    filteredSearch.FilterMinStarDistance(Single.Parse(args[i + 1],
-                        NumberStyles.Any, CultureInfo.InvariantCulture));
-                }
-                if(args[i] == "--age-max"){
-                    filteredSearch.FilterMaxStarAge(Int32.Parse(args[i + 1],
-                    NumberStyles.Any,
-                        CultureInfo.InvariantCulture));
-                }
-                if(args[i] == "--age-min"){
-                    filteredSearch.FilterMaxStarAge(Int32.Parse(args[i + 1],
-                    NumberStyles.Any,
-                        CultureInfo.InvariantCulture));
-                }
-                if(args[i] == "--rotv-max"){
-                    filteredSearch.FilterMaxStarRVelocity(Single.Parse(args[i + 1],
-                    NumberStyles.Any,
-                        CultureInfo.InvariantCulture));
-                }
-                if(args[i] == "--rotv-min"){
-                    filteredSearch.FilterMinStarRVelocity(Single.Parse(args[i + 1],
-                    NumberStyles.Any,
-                        CultureInfo.InvariantCulture));
-                }
-                if(args[i] == "--rotp-max"){
-                    filteredSearch.FilterMaxStarRPeriod(Single.Parse(args[i + 1],
-                    NumberStyles.Any,
-                        CultureInfo.InvariantCulture));
-                }
-                if(args[i] == "--rotp-min"){
-                    filteredSearch.FilterMinStarRPeriod(Single.Parse(args[i + 1],
-                    NumberStyles.Any,
-                        CultureInfo.InvariantCulture));
+                    ArgumentError(e);
                 }
 
 
@@ -319,7 +356,7 @@ namespace NasaProject
         }
 
         /// <summary>
-        /// 
+        /// Prints all the values in raw
         /// </summary>
         public void PrintRawCsv(FileReader file)
         {
@@ -329,6 +366,9 @@ namespace NasaProject
             }
         }
 
+        /// <summary>
+        /// Prints a Error
+        /// </summary>
         public void FileFormatError()
         {
             System.Console.WriteLine("\nOcorreu um erro.\nFormato de ficheiro inválido.");
@@ -387,9 +427,36 @@ namespace NasaProject
             }
         }
 
+        /// <summary>
+        /// Prints an error relative to the search argument
+        /// </summary>
         private void SearchMethodError()
         {
-            System.Console.WriteLine("\nMétodo de pesquisa não referido ou inválido.");
+            Console.WriteLine("\nOcorreu um erro.");
+            Console.WriteLine("Método de pesquisa não referido ou inválido.");
+            Environment.Exit(0);
+        }
+        /// <summary>
+        /// Prints an error relative to the arguments
+        /// </summary>
+        /// <param name="e">Exception found</param>
+        private void ArgumentError(Exception e)
+        {
+            Console.WriteLine("\nOcorreu um erro.");
+            switch (e)
+            {
+                case FormatException:
+                    Console.WriteLine("Um ou mais argumentos são inválidos.");
+                    break;
+
+                case IndexOutOfRangeException:
+                    Console.WriteLine("Um ou mais argumentos em falta.");
+                    break;
+
+                default:
+                    break;
+            }
+
             Environment.Exit(0);
         }
     }

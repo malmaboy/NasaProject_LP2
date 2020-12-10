@@ -11,16 +11,33 @@ namespace NasaProject
     /// </summary>
     public class Filter
     {
+        
+        /// Variables 
 
+        /// <summary>
+        /// Filter the Planets Arguments 
+        /// </summary>
         IEnumerable<Planet> filteredPlanets;
+        /// <summary>
+        /// Filter the Star Arguments 
+        /// </summary>
         IEnumerable<Star> filteredStars;
 
+
+        /// <summary>
+        /// Filter Constructor 
+        /// </summary>
+        /// <param name="file">File Path</param>
         public Filter(FileReader file)
         {
             filteredPlanets = file.GetPlanets();
             filteredStars = file.GetStars();
         }
 
+        /// <summary>
+        /// Filter Planet Name 
+        /// </summary>
+        /// <param name="name"></param>
         public void FilterName(string name)
         {
             filteredPlanets =
@@ -29,6 +46,10 @@ namespace NasaProject
                 select planet;
         }
 
+        /// <summary>
+        /// Filter the max Temperature 
+        /// </summary>
+        /// <param name="max"></param>
         public void FilterMaxEqt(float max)
         {
 
@@ -43,6 +64,11 @@ namespace NasaProject
                      CultureInfo.InvariantCulture) <= max
                 select planet;
         }
+
+        /// <summary>
+        /// Filter the Min temperature 
+        /// </summary>
+        /// <param name="min"></param>
         public void FilterMinEqt(float min)
         {
 
@@ -58,6 +84,11 @@ namespace NasaProject
                 select planet;
         }
 
+        /// <summary>
+        /// Filter the Max Radius
+        /// </summary>
+        /// <param name="max"></param>
+
         public void FilterMaxRade(float max)
         {
 
@@ -72,6 +103,11 @@ namespace NasaProject
                     CultureInfo.InvariantCulture) <= max
                 select planet;
         }
+
+        /// <summary>
+        /// Filter the Min Radius
+        /// </summary>
+        /// <param name="min"></param>
         public void FilterMinRade(float min)
         {
 
@@ -86,7 +122,10 @@ namespace NasaProject
                     CultureInfo.InvariantCulture) >= min
                 select planet;
         }
-
+        /// <summary>
+        /// Filters the Discovery Method 
+        /// </summary>
+        /// <param name="method"></param>
         public void FilterDiscMethod(string method)
         {
             filteredPlanets =
@@ -94,6 +133,10 @@ namespace NasaProject
                 where planet.DiscMethod == method
                 select planet;
         }
+        /// <summary>
+        /// Filters the Max Discovery Year
+        /// </summary>
+        /// <param name="max"></param>
         public void FilterMaxDiscYear(int max)
         {
 
@@ -108,6 +151,10 @@ namespace NasaProject
                     CultureInfo.InvariantCulture) <= max
                 select planet;
         }
+        /// <summary>
+        /// Filters the Min Discovery Year
+        /// </summary>
+        /// <param name="min"></param>
         public void FilterMinDiscYear(int min)
         {
 
@@ -123,6 +170,11 @@ namespace NasaProject
                 select planet;
         }
 
+        /// <summary>
+        /// Filters the Min orbital Period
+        /// </summary>
+        /// <param name="min"></param>
+
         public void FilterMinOrbPer(float min)
         {
             filteredPlanets =
@@ -137,6 +189,10 @@ namespace NasaProject
                 select planet;
         }
 
+        /// <summary>
+        /// Filters the Max Orbital Period
+        /// </summary>
+        /// <param name="max"></param>
         public void FilterMaxOrbPer(int max)
         {
             filteredPlanets =
@@ -150,6 +206,11 @@ namespace NasaProject
                     CultureInfo.InvariantCulture) <=max
                 select planet;
         }
+
+        /// <summary>
+        /// Filters the min Mass
+        /// </summary>
+        /// <param name="min"></param>
         public void FilterMinMasse(float min)
         {
             filteredPlanets =
@@ -163,6 +224,10 @@ namespace NasaProject
                     CultureInfo.InvariantCulture) >=min
                 select planet;
         }
+        /// <summary>
+        /// Filters the Max Mass
+        /// </summary>
+        /// <param name="max"></param>
         public void FilterMaxMasse(float max)
         {
             filteredPlanets =
@@ -177,9 +242,12 @@ namespace NasaProject
                 select planet;
         }
 
-        // Star Filters
+        /// Star Filters
 
-        
+        /// <summary>
+        /// Filters The Star Name
+        /// </summary>
+        /// <param name="name"></param>
         public void FilterStarName(string name)
         {
             filteredStars =
@@ -187,6 +255,10 @@ namespace NasaProject
                 where star.Name == name
                 select star;
         }
+        /// <summary>
+        /// Filters the Max Temperature
+        /// </summary>
+        /// <param name="max"></param>
 
         public void FilterMaxStarTeff(float max)
         {
@@ -202,6 +274,11 @@ namespace NasaProject
                     CultureInfo.InvariantCulture) <= max
                 select star;
         }
+
+        /// <summary>
+        /// Filters the Min Temperature
+        /// </summary>
+        /// <param name="min"></param>
         public void FilterMinStarTeff(float min)
         {
 
@@ -217,6 +294,10 @@ namespace NasaProject
                 select star;
         }
 
+        /// <summary>
+        /// Filters the Max Mass
+        /// </summary>
+        /// <param name="max"></param>
         public void FilterMaxStarMass(float max)
         {
 
@@ -231,7 +312,10 @@ namespace NasaProject
                     CultureInfo.InvariantCulture) <= max
                 select star;
         }
-
+        /// <summary>
+        /// Filters the Min Mass
+        /// </summary>
+        /// <param name="min"></param>
         public void FilterMinStarMass(float min)
         {
 
@@ -247,6 +331,10 @@ namespace NasaProject
                 select star;
         }
 
+        /// <summary>
+        /// Filters the min Radius 
+        /// </summary>
+        /// <param name="min"></param>
         public void FilterMinStarRad(float min)
         {
 
@@ -261,7 +349,10 @@ namespace NasaProject
                     CultureInfo.InvariantCulture) <= min
                 select star;
         }
-
+        /// <summary>
+        /// Filter the Max Radius 
+        /// </summary>
+        /// <param name="max"></param>
         public void FilterMaxStarRad(float max)
         {
 
@@ -276,7 +367,10 @@ namespace NasaProject
                     CultureInfo.InvariantCulture) >= max
                 select star;
         }
-
+        /// <summary>
+        /// Filters the Max Distance between the Star ans Sun
+        /// </summary>
+        /// <param name="max"></param>
         public void FilterMaxStarDistance(float max)
         {
 
@@ -291,6 +385,10 @@ namespace NasaProject
                     CultureInfo.InvariantCulture) <= max
                 select star;
         }
+        /// <summary>
+        /// Filters the Min Distance between the Star ans Sun
+        /// </summary>
+        /// <param name="min"></param>
         public void FilterMinStarDistance(float min)
         {
 
@@ -305,7 +403,10 @@ namespace NasaProject
                     CultureInfo.InvariantCulture) >= min
                 select star;
         }
-
+        /// <summary>
+        /// Filters the Min Age
+        /// </summary>
+        /// <param name="min"></param>
         public void FilterMinStarAge(int min)
         {
             filteredStars =
@@ -319,6 +420,10 @@ namespace NasaProject
                     CultureInfo.InvariantCulture) >= min
                 select star;
         }
+        /// <summary>
+        /// Filter the Max Age
+        /// </summary>
+        /// <param name="max"></param>
 
         public void FilterMaxStarAge(int max)
         {
@@ -334,6 +439,10 @@ namespace NasaProject
                 select star;
         }
 
+        /// <summary>
+        /// Filter the Max Star Rotation Velocity
+        /// </summary>
+        /// <param name="max"></param>
         public void FilterMaxStarRVelocity(float max)
         {
             filteredStars =
@@ -347,6 +456,10 @@ namespace NasaProject
                     CultureInfo.InvariantCulture) <= max
                 select star;
         }
+        /// <summary>
+        /// Filter the Min Star Rotation Velocity
+        /// </summary>
+        /// <param name="min"></param>
 
         public void FilterMinStarRVelocity(float min)
         {
@@ -361,7 +474,10 @@ namespace NasaProject
                     CultureInfo.InvariantCulture) >= min
                 select star;
         }
-
+        /// <summary>
+        /// Filters the Max Star Rotation Period 
+        /// </summary>
+        /// <param name="max"></param>
         public void FilterMaxStarRPeriod(float max)
         {
             filteredStars =
@@ -375,7 +491,10 @@ namespace NasaProject
                     CultureInfo.InvariantCulture) <= max
                 select star;
         }
-
+        /// <summary>
+        /// Filters the Min Star Rotation Period 
+        /// </summary>
+        /// <param name="min"></param>
         public void FilterMinStarRPeriod(float min)
         {
             filteredStars =
@@ -390,6 +509,10 @@ namespace NasaProject
                 select star;
         }
 
+        /// <summary>
+        /// Returns the filtered Planet one by one
+        /// </summary>
+        /// <returns>Filtered Planets</returns>
         public IEnumerable<Planet> GetFilteredPlanets()
         {
             foreach (Planet planet in filteredPlanets)
@@ -397,7 +520,10 @@ namespace NasaProject
                 yield return planet;
             }
         }
-
+        /// <summary>
+        /// Returns the filtered Stars one by one
+        /// </summary>
+        /// <returns>Filtered Stars</returns>
         public IEnumerable<Star> GetFilteredStars()
         {
             foreach (Star star in filteredStars)

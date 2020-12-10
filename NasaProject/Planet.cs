@@ -7,37 +7,37 @@ namespace NasaProject
         /// Variables
         /// </summary>
 
-        // Planet name 
+        /// Planet name 
         public string Name { get; private set; }
-        // Star name
+        /// Star name
         public string Hostname { get; private set; }
-        // Discovery Method
+        /// Discovery Method
         public string DiscMethod { get; private set; }
-        // Year Found 
+        /// Year Found 
         public string DiscYear { get; private set; }
 
-        // Orbital Period (days)
+        /// Orbital Period (days)
         public string OrbPer { get; private set; }
 
-        // Planet Radius Relative to Earth
+        /// Planet Radius Relative to Earth
         public string Rade { get; private set; }
-        // Planet Mass Relative to Earth
+        /// Planet Mass Relative to Earth
         public string Masse { get; private set; }
 
-        // Planet Equilibrium Temperature (kelvins)
+        /// Planet Equilibrium Temperature (kelvins)
         public string Eqt { get; private set; }
 
         /// <summary>
         /// Planet Constructor 
         /// </summary>
-        /// <param name="_name"></param>
-        /// <param name="_hostname"></param>
-        /// <param name="_discMethod"></param>
-        /// <param name="_discYear"></param>
-        /// <param name="_orbper"></param>
-        /// <param name="_rade"></param>
-        /// <param name="_masse"></param>
-        /// <param name="_eqt"></param>
+        /// <param name="_name">Name</param>
+        /// <param name="_hostname">Star Name</param>
+        /// <param name="_discMethod">Discovery Method</param>
+        /// <param name="_discYear">Discovery Year</param>
+        /// <param name="_orbper">Orbital Period</param>
+        /// <param name="_rade">Radius</param>
+        /// <param name="_masse">Mass compering to earth</param>
+        /// <param name="_eqt">Temperature (kelvins)</param>
         public Planet(string _name, string _hostname,
             string _discMethod, string _discYear,
             string _orbPer, string _rade, string _masse, string _eqt)

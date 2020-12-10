@@ -11,6 +11,9 @@ namespace NasaProject
     /// </summary>
     public class FileReader
     {
+        /// <summary>
+        /// Variables
+        /// </summary>
         private List<Planet> planets;
         private List<Star> stars;
         private List<string> lines;
@@ -18,6 +21,9 @@ namespace NasaProject
         int[] indexes;
         private UserInterface userInterface;
 
+        /// <summary>
+        /// File Reader Constructor 
+        /// </summary>
         public FileReader()
         {
             userInterface = new UserInterface();
@@ -29,7 +35,7 @@ namespace NasaProject
         }
 
         /// <summary>
-        /// Read The File 
+        /// Reads the File 
         /// </summary>
         public void ReadFile(string filePath, int mode)
         {
@@ -121,8 +127,46 @@ namespace NasaProject
 
                                 for (int i = 0; i < stars.Count; i++)
                                 {
-                                    if (stars[i].Name == lineValues[1])
+                                    if (stars[i].Name == lineValues[indexes[1]])
                                     {
+                                        if (indexes[8] != -1 &&
+                                            stars[i].Teff == "N/A" &&
+                                        lineValues[indexes[8]] != "") stars[i].
+                                        Teff = lineValues[indexes[8]];
+
+                                        if (indexes[9] != -1 &&
+                                        stars[i].Rad == "N/A" &&
+                                        lineValues[indexes[9]] != "") stars[i].
+                                         Rad = lineValues[indexes[9]];
+
+                                        if (indexes[10] != -1 &&
+                                        stars[i].Mass == "N/A" &&
+                                        lineValues[indexes[10]] != "") stars[i].
+                                        Mass = lineValues[indexes[10]];
+
+                                        if (indexes[11] != -1 &&
+                                        stars[i].StarAge == "N/A" &&
+                                        lineValues[indexes[11]] != "") stars[i].
+                                        StarAge = lineValues[indexes[11]];
+
+                                        if (indexes[12] != -1 &&
+                                        stars[i].StarRotationVelocity ==
+                                        "N/A" && lineValues[indexes[12]] != "")
+                                            stars[i].StarRotationVelocity =
+                                             lineValues[indexes[12]];
+
+                                        if (indexes[13] != -1 &&
+                                        stars[i].StarRotationPeriod ==
+                                        "N/A" && lineValues[indexes[13]] != "")
+                                            stars[i].StarRotationPeriod =
+                                            lineValues[indexes[13]];
+
+                                        if (indexes[14] != -1 &&
+                                        stars[i].DistanceStarToSun ==
+                                        "N/A" && lineValues[indexes[14]] != "")
+                                            stars[i].DistanceStarToSun =
+                                           lineValues[indexes[14]];
+
                                         newStar = false;
                                         break;
                                     }
@@ -175,22 +219,22 @@ namespace NasaProject
 
 
         /// <summary>
-        /// Get a list of planets
+        /// Returns a list of planets
         /// </summary>
         /// <returns>Planets</returns>
-        public List<Planet> GetPlanets() => planets;
+         public List<Planet> GetPlanets() => planets;
+
 
         /// <summary>
-        /// Get a list of Stars
+        /// Returns a list of Stars
         /// </summary>
         /// <returns>Stars</returns>
         public List<Star> GetStars() => stars;
 
-
         /// <summary>
-        /// 
+        /// Returns every string in lines, one by one
         /// </summary>
-        /// <returns></returns>
+        /// <returns>string</returns>
         public IEnumerable<string> GetLines()
         {
             foreach (string s in lines)
